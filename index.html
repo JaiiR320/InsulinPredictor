@@ -1,0 +1,41 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.2.js" integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
+        <script src="./script.js"></script>
+		<link rel="stylesheet" href="style.css">
+		<title>Predicting Insulin</title>
+	</head>
+	<body>
+		<div class="header">
+			<h1>Insulin Predictor</h1>
+		</div>
+		<div class="main">
+			<p>For our project, we wanted to be able to predict the 
+				future price of insulin based on the prices that have 
+				been set currently and in the past. Being able to accurately 
+				predict the price of insulin to a certain range would help 
+				those in need be able to find the necessary medicine needed 
+				to live at an affordable price. To predict the price of insulin, 
+				our model would use the Fisher Price Index on a set of data. 
+				The predicted price of insulin would be based on the data that 
+				was given along with previous data already given to the model to 
+				more accurately pick an accurate price. To measure the success of 
+				our model, we would compare our models' predictions of older data
+				to how the data turned out and based on that success, would give us a good understanding of how accurate it could be for data now to predict future prices. </p>
+			<div class="plot" id="tester"></div>
+			
+		</div>
+		<div class="pred">
+			<h3>The time is months since Jan, 1961
+				This means, 665 = Nov, 2022, 
+			</h3>
+			<button onclick="showPrediction()" >Show Predictions</button>
+			<div style="display: none" class="plot" id="prediction"></div>
+		</div>
+		<p>based on the predictions, Insulin will rise by about 160 the following month, resulting in a PPI of 1766.80 </p>
+	</body>
+</html>
