@@ -2,13 +2,20 @@ var csvLoaded = false;
 var predictLoaded = false
 var tests = []
 
+// make function to convert number to date
+
 $(document).ready(function() {
+	for (var i = 1; i <= 743; i++){
+		console.log(toDate(i))
+	}
+
 	$.ajax({
         type: "GET",
-        url: "output.csv",
+        url: "output2.csv",
         dataType: "text",
         success: function(data) {
 			csvLoaded = true;
+			tests.push(test_csv());
 			processData(data);
 		}
 	});
@@ -22,6 +29,14 @@ $(document).ready(function() {
 		}
 	});
 });
+
+function toDate(t){
+	t = t-1;
+	var month = t % 12;
+	month += 1;
+	var year = 1961 + Math.floor(t/12);
+	return year + "-" + month + "-01";
+}
 
 function processData(allText) {
 	var allTextLines = allText.split(/\r\n|\n/);
@@ -53,7 +68,6 @@ function processData(allText) {
 		margin: { t: 0 },}
 	);
 
-	tests.push(test_csv());
 	tests.push(test_plot());
 }
 
@@ -79,6 +93,17 @@ function processPredict(allText){
 		x.push(parseInt(coord[0]));
 		y.push(parseFloat(coord[1]));
 	});
+	var table = document.getElementById("table");
+	for (var i = 0; i < x.length; i++) {
+		var xtd = document.createElement("td");
+		xtd.innerHTML = toDate(x[i]).toString();
+		var ytd = document.createElement("td");
+		ytd.innerHTML = y[i].toString();
+		var tr = document.createElement("tr");
+		tr.appendChild(xtd);
+		tr.appendChild(ytd);
+		table.appendChild(tr);
+	}
 
 	const prediction = document.getElementById('prediction');
 	Plotly.newPlot( prediction,[{
@@ -90,10 +115,12 @@ function processPredict(allText){
 }
 
 function showPrediction(){
-	var p = document.getElementById('prediction');
+	var p = document.getElementById('pdiv');
 	p.style.display = 'block';	
+	document.getElementById('table').style.display = 'block';
+	tests.push(test_showPlot(true));
+	tests.push(test_button(true));
 	console.table(tests, ["Test_Case", "Input", "Exp", "Observed"]);
-
 }
 
 function test_csv(){
@@ -123,5 +150,21 @@ function test_plot(){
 	const input = "document.getElementsByClassName('plot-container')";
 	const expected = "Plot exists (classname found)";
 	const observed = output;
+	return {Test_Case:testCase, Input:input, Exp:expected, Observed:observed}
+}
+
+function test_button(btnClicked){
+	const testCase = "button click";
+	const input = "showPrediction()";
+	const expected = "Button was clicked";
+	const observed = btnClicked;
+	return {Test_Case:testCase, Input:input, Exp:expected, Observed:observed}
+}
+
+function test_showPlot(checked){
+	const testCase = "show plot";
+	const input = "document.getElementById('pred').style";
+	const expected = "Style is set to \"display: block\"";
+	const observed = checked;
 	return {Test_Case:testCase, Input:input, Exp:expected, Observed:observed}
 }

@@ -13,6 +13,7 @@
 		<div class="header">
 			<h1>Insulin Predictor</h1>
 		</div>
+		<h2 style="margin-left: 20px">The Regression</h2>
 		<div class="main">
 			<p>For our project, we wanted to be able to predict the 
 				future price of insulin based on the prices that have 
@@ -27,15 +28,26 @@
 				our model, we would compare our models' predictions of older data
 				to how the data turned out and based on that success, would give us a good understanding of how accurate it could be for data now to predict future prices. </p>
 			<div class="plot" id="tester"></div>
-			
 		</div>
+		<h2 style="margin-left: 20px">Predictions</h2>
 		<div class="pred">
-			<h3>The time is months since Jan, 1961
-				This means, 665 = Nov, 2022, 
-			</h3>
-			<button onclick="showPrediction()" >Show Predictions</button>
-			<div style="display: none" class="plot" id="prediction"></div>
+			<div>
+				<h3>The time is months since Jan, 1961
+					This means, 743 = Nov, 2022, 
+				</h3>
+				<button class="button" onclick="showPrediction()" >Show Predictions</button>
+			</div>
+			<div id="pdiv" style="display: none">
+				<div style="display: flex;" >
+					<table id="table" style="margin: auto">
+						<tr>
+							<td>Time</td><td>PPI</td>
+						</tr>
+					</table>
+					<div class="plot" id="prediction"></div>
+				</div>
+			</div>
+				
 		</div>
-		<p>based on the predictions, Insulin will rise by about 160 the following month, resulting in a PPI of 1766.80 </p>
 	</body>
 </html>

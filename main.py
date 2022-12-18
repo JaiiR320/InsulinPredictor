@@ -11,13 +11,13 @@ from sklearn.linear_model import LinearRegression
 def clean_data():
     t = []
     ppi = []
-    f = open("./raw.csv", "r")
+    f = open("./preprocess.csv", "r")
     csvFile = csv.reader(f)
     count = 0
     # iterate over each line in the file
     for line in csvFile:
         # if the line does not have empty data
-        if line[1] != "." and line[0] != "date":
+        if line[1] != "." and line[0] != "DATE":
             # append count to x-axis
             t.append(count)
             # append the data to the y-axis
@@ -39,7 +39,7 @@ def main():
     plt.ylabel("Producer Price Index of Insulin")
     plt.title("Polynomial Regression of Producet Price index of Insulin")
 
-    poly = PolynomialFeatures(degree=5, include_bias=True)
+    poly = PolynomialFeatures(degree=6, include_bias=True)
     poly_features = poly.fit_transform(x.reshape(-1, 1))
  
     poly_reg_model = LinearRegression()
@@ -48,13 +48,13 @@ def main():
     
     plt.plot(x, y_predicted, c='red')
 
-    f = open('./output.csv', 'w')
+    f = open('./output2.csv', 'w')
     f.write("\"t\",\"ppi\"\n")
     for i in range(len(x)):
         row = str(x[i]) + "," + str(y_predicted[i]) + '\n'
         f.write(row)
     f.close()
-    predict_x = np.array(list(range(666, 800)))
+    predict_x = np.array(list(range(744, 780)))
     predict_xform = poly.fit_transform(predict_x.reshape(-1,1))
     new_predict = poly_reg_model.predict(predict_xform)\
 
@@ -63,6 +63,7 @@ def main():
     for i in range(len(predict_x)):
         f.write(str(predict_x[i]) + "," + str(new_predict[i]) + '\n')
     f.close()
+    plt.show()
 
 if __name__ == '__main__':
     main()

@@ -4,16 +4,16 @@ body {
 }
 .header{
     height: 8vh;
-    width: 100vw;
+    width: auto;
+    padding-left: 20px;
     background-color: #658E9C;
-    text-align: center;
     text-justify: center;
-    box-shadow: 10px, 0px, 10px black;
 }
 .header h1 {
     margin: 0;
     padding-top: 20px;
-    color: #514663;
+    color: whitesmoke;
+    font-size: 50px;
 }
 .main {
     display: flex;
@@ -22,20 +22,46 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: aliceblue;
+    background-color: whitesmoke;
 }
 .main p {
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     width: 30%;
+    font-size: 110%;
 }
 .plot {
-    height: 250px;
-    width: 600px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
     border-color: #4D5382;
     border-width: 5px;
     border-style: solid;
+}
+
+#prediction {
+    height: 450;
+    width: 600;
+}
+
+.pred {
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
