@@ -5,10 +5,9 @@ var tests = []
 // make function to convert number to date
 
 $(document).ready(function() {
-	for (var i = 1; i <= 743; i++){
-		console.log(toDate(i))
+	for (let i = 650; i < 800; i++) {
+		console.log(i, toDate(i));
 	}
-
 	$.ajax({
         type: "GET",
         url: "output2.csv",
@@ -31,7 +30,8 @@ $(document).ready(function() {
 });
 
 function toDate(t){
-	t = t-1;
+	t = t-2;
+	t += 0;
 	var month = t % 12;
 	month += 1;
 	var year = 1961 + Math.floor(t/12);
@@ -57,7 +57,7 @@ function processData(allText) {
 	var y = []
 	var x = []
 	lines.forEach(coord => {
-		x.push(parseInt(coord[0]));
+		x.push(parseInt(coord[0])+650);
 		y.push(parseFloat(coord[1]));
 	});
 
@@ -90,7 +90,7 @@ function processPredict(allText){
 	var y = []
 	var x = []
 	lines.forEach(coord => {
-		x.push(parseInt(coord[0]));
+		x.push(parseInt(coord[0]) + 650);
 		y.push(parseFloat(coord[1]));
 	});
 	var table = document.getElementById("table");
